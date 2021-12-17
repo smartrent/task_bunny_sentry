@@ -1,7 +1,7 @@
 defmodule TaskBunnySentry.Mixfile do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "0.3.0"
   @description "TaskBunny job failure backend that reports the error to Sentry"
 
   def project do
