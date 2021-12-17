@@ -33,19 +33,18 @@ defmodule TaskBunnySentry.Mixfile do
 
   defp deps do
     [
-      {:credo, "~> 0.10", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.19", only: :dev},
-      {:inch_ex, "~> 0.5", only: :dev},
       {:jason, "~> 1.1", optional: true},
       {:mox, "~> 0.3", only: :test},
       {:sentry, "~> 7.0", optional: true},
-      {:task_bunny, "~> 0.3", optional: true}
+      {:task_bunny, "~> 0.4", organization: "smartrent", optional: true}
     ]
   end
 
   defp package do
     [
       name: :task_bunny_sentry,
+      organization: "smartrent",
       files: [
         # Project files
         "mix.exs",
