@@ -93,7 +93,11 @@ defmodule TaskBunnySentryTest do
 
       expect(SentryMock, :send_event, fn %Sentry.Event{event_id: id} = event, _ ->
         assert event.exception == [
-                 %{module: nil, type: TaskBunnyError, value: "Unexpected exit signal"}
+                 %{
+                   module: nil,
+                   type: TaskBunnyError,
+                   value: "TaskBunnySentry.TestJob - Unexpected exit signal"
+                 }
                ]
 
         assert event.extra == %{
@@ -118,7 +122,13 @@ defmodule TaskBunnySentryTest do
       error = JobError.handle_timeout(@job, @payload)
 
       expect(SentryMock, :send_event, fn %Sentry.Event{event_id: id} = event, _ ->
-        assert event.exception == [%{module: nil, type: TaskBunnyError, value: "Timeout error"}]
+        assert event.exception == [
+                 %{
+                   module: nil,
+                   type: TaskBunnyError,
+                   value: "TaskBunnySentry.TestJob - Timeout error"
+                 }
+               ]
 
         assert event.extra == %{
                  exit: nil,
@@ -143,7 +153,11 @@ defmodule TaskBunnySentryTest do
 
       expect(SentryMock, :send_event, fn %Sentry.Event{event_id: id} = event, _ ->
         assert event.exception == [
-                 %{module: nil, type: TaskBunnyError, value: "Unexpected return value"}
+                 %{
+                   module: nil,
+                   type: TaskBunnyError,
+                   value: "TaskBunnySentry.TestJob - Unexpected return value"
+                 }
                ]
 
         assert event.extra == %{
@@ -169,7 +183,11 @@ defmodule TaskBunnySentryTest do
 
       expect(SentryMock, :send_event, fn %Sentry.Event{event_id: id} = event, _ ->
         assert event.exception == [
-                 %{module: nil, type: TaskBunnyError, value: "Unexpected return value"}
+                 %{
+                   module: nil,
+                   type: TaskBunnyError,
+                   value: "TaskBunnySentry.TestJob - Unexpected return value"
+                 }
                ]
 
         assert event.extra == %{
