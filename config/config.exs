@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # If you want to try this library with your Sentry account
 # unncomment the below and set your access token.
