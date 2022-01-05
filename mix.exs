@@ -1,8 +1,9 @@
 defmodule TaskBunnySentry.Mixfile do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.3.1"
   @description "TaskBunny job failure backend that reports the error to Sentry"
+  @source_url "https://github.com/smartrent/task_bunny_sentry"
 
   def project do
     [
@@ -14,10 +15,10 @@ defmodule TaskBunnySentry.Mixfile do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: [
-        extras: ["README.md"],
+        extras: ["README.md", "CHANGELOG.md"],
         main: "readme",
         source_ref: "v#{@version}",
-        source_url: "https://github.com/homepolish/task_bunny_sentry"
+        source_url: @source_url
       ],
       description: @description,
       package: package()
@@ -59,7 +60,10 @@ defmodule TaskBunnySentry.Mixfile do
         "Cesario Uy"
       ],
       licenses: ["MIT"],
-      links: %{"Github" => "https://github.com/homepolish/task_bunny_sentry"}
+      links: %{
+        "Github" => @source_url,
+        "Changelog" => @source_url <> "/blob/master/CHANGELOG.md"
+      }
     ]
   end
 end
