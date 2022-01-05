@@ -18,24 +18,30 @@ defmodule TaskBunnySentry do
     report_error(error.exception, error.stacktrace, error)
   end
 
-  def report_job_error(error = %JobError{error_type: :exit}) do
-    %TaskBunnyError{message: "Unexpected exit signal"}
+  def report_job_error(error = %JobError{error_type: :exit, job: job}) do
+    %TaskBunnyError{message: "#{job_module(job)} - Unexpected exit signal"}
     |> report_error(error.stacktrace, error)
   end
 
-  def report_job_error(error = %JobError{error_type: :return_value}) do
-    %TaskBunnyError{message: "Unexpected return value"}
+  def report_job_error(error = %JobError{error_type: :return_value, job: job}) do
+    %TaskBunnyError{message: "#{job_module(job)} - Unexpected return value"}
     |> report_error(original_stacktrace(Process.info(self(), :current_stacktrace)), error)
   end
 
-  def report_job_error(error = %JobError{error_type: :timeout}) do
-    %TaskBunnyError{message: "Timeout error"}
+  def report_job_error(error = %JobError{error_type: :timeout, job: job}) do
+    %TaskBunnyError{message: "#{job_module(job)} - Timeout error"}
     |> report_error(original_stacktrace(Process.info(self(), :current_stacktrace)), error)
   end
 
-  def report_job_error(error = %JobError{}) do
-    %TaskBunnyError{message: "Unknown error"}
+  def report_job_error(error = %JobError{job: job}) do
+    %TaskBunnyError{message: "#{job_module(job)} - Unknown error"}
     |> report_error(original_stacktrace(Process.info(self(), :current_stacktrace)), error)
+  end
+
+  defp job_module(job) do
+    job
+    |> Atom.to_string()
+    |> String.replace("Elixir.", "")
   end
 
   ## PRIVATE FUNCTIONS
