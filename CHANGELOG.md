@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+- Support Sentry 8.x (#2)
+
 ## 0.3.1
 
 - Error messages now include the name of the job module

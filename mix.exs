@@ -1,7 +1,7 @@
 defmodule TaskBunnySentry.Mixfile do
   use Mix.Project
 
-  @version "0.3.1"
+  @version "0.4.0"
   @description "TaskBunny job failure backend that reports the error to Sentry"
   @source_url "https://github.com/smartrent/task_bunny_sentry"
 
