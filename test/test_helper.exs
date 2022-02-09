@@ -1,4 +1,3 @@
-Mox.defmock(SentryMock, for: Sentry.HTTPClient)
-Application.put_env(:sentry, :client, SentryMock)
+{:ok, _} = Application.ensure_all_started(:sentry)
 
 ExUnit.start()

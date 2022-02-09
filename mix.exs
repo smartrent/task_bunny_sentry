@@ -34,10 +34,12 @@ defmodule TaskBunnySentry.Mixfile do
 
   defp deps do
     [
-      {:ex_doc, "~> 0.19", only: :dev},
+      {:bypass, "~> 2.1", only: :test},
+      {:ex_doc, "~> 0.28", only: :dev},
+      {:hackney, "~> 1.8", optional: true},
       {:jason, "~> 1.1", optional: true},
-      {:mox, "~> 0.3", only: :test},
-      {:sentry, "~> 7.0", optional: true},
+      {:plug, "~> 1.0", only: :test},
+      {:sentry, "~> 8.0", optional: true},
       {:task_bunny, "~> 0.4", organization: "smartrent", optional: true}
     ]
   end
@@ -52,12 +54,6 @@ defmodule TaskBunnySentry.Mixfile do
         "README.md",
         "LICENSE.md",
         "lib"
-      ],
-      maintainers: [
-        "Johnny Feng",
-        "Erik Reedstrom",
-        "James Stradling",
-        "Cesario Uy"
       ],
       licenses: ["MIT"],
       links: %{

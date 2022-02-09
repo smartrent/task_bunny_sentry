@@ -6,14 +6,13 @@ defmodule TaskBunnySentry do
   require Logger
   alias TaskBunny.JobError
 
-  @type task :: {:ok, Task.t()} | :error | :excluded | :ignored
-
-  @spec report_job_error(error :: JobError.t(), opts :: [extra: list(atom)]) :: task
+  @spec report_job_error(error :: JobError.t(), opts :: [extra: list(atom)]) ::
+          Sentry.send_result()
   def report_job_error(error = %JobError{error_type: :exception}, opts = [extra: _]) do
     report_error(error.exception, error.stacktrace, error, opts)
   end
 
-  @spec report_job_error(error :: JobError.t()) :: task
+  @spec report_job_error(error :: JobError.t()) :: Sentry.send_result()
   def report_job_error(error = %JobError{error_type: :exception}) do
     report_error(error.exception, error.stacktrace, error)
   end
