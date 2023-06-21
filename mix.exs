@@ -1,7 +1,7 @@
 defmodule TaskBunnySentry.Mixfile do
   use Mix.Project
 
-  @version "0.4.0"
+  @version "0.5.0"
   @description "TaskBunny job failure backend that reports the error to Sentry"
   @source_url "https://github.com/smartrent/task_bunny_sentry"
 
@@ -40,7 +40,7 @@ defmodule TaskBunnySentry.Mixfile do
       {:jason, "~> 1.1", optional: true},
       {:plug, "~> 1.0", only: :test},
       {:sentry, "~> 8.0", optional: true},
-      {:task_bunny, "~> 0.4", organization: "smartrent", optional: true}
+      {:task_bunny, "~> 0.4", organization: "smartrent", optional: true, runtime: false}
     ]
   end
 
